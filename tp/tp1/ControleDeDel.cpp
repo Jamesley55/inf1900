@@ -25,9 +25,9 @@ int main()
 
   for (;;) // boucle sans fin
   {
-    // DELRouge(100);
-    // DELVert(100);
-    // DELAmbree();
+     DELRouge(100);
+     DELVert(100);
+     DELAmbree();
     lectureButtonPoussoir();
   }
   return 0;

@@ -19,12 +19,12 @@ bool estPresser();
 void alumerDel();
 int main()
 {
-    PORTA |= (1 << DDA0) | (1 << DDA1);
+    DDRA |= (1 << DDA0) | (1 << DDA1);
     DDRD = 0x0;
     Etats etat = Etats::INIT;
     for (;;)
     {
-
+        _delay_ms(125);
         switch (etat)
         {
         case Etats::INIT:
@@ -34,20 +34,24 @@ int main()
         case Etats::EA:
             if (estPresser())
                 etat = Etats::EB;
+
             break;
 
         case Etats::EB:
             if (estPresser())
                 etat = Etats::EC;
+
             break;
 
         case Etats::EC:
             if (estPresser())
                 etat = Etats::ED;
+
             break;
         case Etats::ED:
             if (estPresser())
                 etat = Etats::EE;
+
             break;
         case Etats::EE:
             if (estPresser())
@@ -55,6 +59,7 @@ int main()
                 alumerDel();
                 etat = Etats::INIT;
             }
+
             break;
         }
     }
