@@ -69,9 +69,7 @@ AVRDUDE=avrdude
 #pour supprimer les fichiers lorsque l'on appel make clean
 REMOVE=rm -f
 # HEXFORMAT -- format pour les fichiers produient .hex
-HEXFORMAT=ihex
-
-
+HEXFORMAT=ihexDELVert
 
 ####### Options de compilation #######
 
