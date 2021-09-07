@@ -15,7 +15,6 @@ enum class Etats
     EE
 };
 
-bool estPresser();
 void alumerDel();
 int main()
 {
@@ -24,62 +23,54 @@ int main()
     Etats etat = Etats::INIT;
     for (;;)
     {
-        _delay_ms(125);
-        switch (etat)
+        if (PIND & D2)
         {
-        case Etats::INIT:
-            if (estPresser())
-                etat = Etats::EA;
-            break;
-        case Etats::EA:
-            if (estPresser())
-                etat = Etats::EB;
-
-            break;
-
-        case Etats::EB:
-            if (estPresser())
-                etat = Etats::EC;
-
-            break;
-
-        case Etats::EC:
-            if (estPresser())
-                etat = Etats::ED;
-
-            break;
-        case Etats::ED:
-            if (estPresser())
-                etat = Etats::EE;
-
-            break;
-        case Etats::EE:
-            if (estPresser())
+            _delay_ms(debounce);
+            switch (etat)
             {
-                alumerDel();
-                etat = Etats::INIT;
-            }
+            case Etats::INIT:
+                if (PIND & D2)
+                    etat = Etats::EA;
+                break;
+            case Etats::EA:
+                if (PIND & D2)
+                    etat = Etats::EB;
 
-            break;
+                break;
+
+            case Etats::EB:
+                if (PIND & D2)
+                    etat = Etats::EC;
+
+                break;
+
+            case Etats::EC:
+                if (PIND & D2)
+                    etat = Etats::ED;
+
+                break;
+            case Etats::ED:
+                if (PIND & D2)
+                    etat = Etats::EE;
+
+                break;
+            case Etats::EE:
+                if (PIND & D2)
+                {
+                    alumerDel();
+                    etat = Etats::INIT;
+                }
+
+                break;
+            }
         }
     }
     return 0;
 }
 
-bool estPresser()
-{
-    if (PIND & D2)
-    {
-        _delay_ms(debounce);
-        if (PIND & D2)
-        {
-            return true;
-        }
-    }
-    return false;
-}
 void alumerDel()
 {
     PORTA = rouge;
     _delay_ms(1000);
+    PORTA = 0x0;
 }
