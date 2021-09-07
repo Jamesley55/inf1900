@@ -1,0 +1,1 @@
+ControleDeDel.o: ControleDeDel.cpp
