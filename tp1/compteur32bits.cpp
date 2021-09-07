@@ -9,6 +9,7 @@
 
 #include <avr/io.h> 
 
+
 int main()
 {
   DDRA = 0xff; // PORT A est en mode sortie
@@ -33,6 +34,13 @@ int main()
     PORTA = compteur >> 24; // PORTA = 8 bits de large,
                             // il prend les bits de 24 a 31 du compteur
                             // en faisant un decallage de 24 bits.
+
+    // vert 
+    PORTA = 0b00000001
+    // rouge 
+    PORTA = 0b00000010
+
+    
   }
   return 0; 
 }
