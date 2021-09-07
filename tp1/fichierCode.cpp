@@ -50,7 +50,6 @@ void InterupteurAmbre()
     }
     PORTB = 0x00;
 }
-}
 
 int main()
 {
