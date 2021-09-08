@@ -5,6 +5,7 @@
 const uint8_t D2 = 0x04;
 const uint8_t debounce = 10;
 const uint8_t rouge = (1 << 0);
+const uint8_t eteint = (0 << 0);
 enum class Etats
 {
     INIT,
@@ -58,6 +59,7 @@ int main()
                 if (PIND & D2)
                 {
                     alumerDel();
+                    PORTA = eteint;
                     etat = Etats::INIT;
                 }
 
@@ -72,5 +74,4 @@ void alumerDel()
 {
     PORTA = rouge;
     _delay_ms(1000);
-    PORTA = 0x0;
 }
