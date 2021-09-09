@@ -66,6 +66,7 @@ int main()
                 break;
             }
         }
+        _delay_ms(125);
     }
     return 0;
 }
