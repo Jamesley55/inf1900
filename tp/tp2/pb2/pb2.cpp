@@ -36,8 +36,12 @@ int main()
             break;
         case Etats::EA:
             couleurAmbre();
+            if(!estPresser()){
+                etat = Etats::EB;
+            }
             break;
         case Etats::EB:
+            PORTA = vert;
             break;
         case Etats::EC:
             break;
