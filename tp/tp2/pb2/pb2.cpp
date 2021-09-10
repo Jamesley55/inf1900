@@ -29,9 +29,13 @@ int main()
         switch (etat)
         {
         case Etats::INIT:
-            couleurAmbre();
+            PORTA = rouge; 
+            if(estPresser()){
+                etat = Etats::EA;
+            }
             break;
         case Etats::EA:
+            couleurAmbre();
             break;
         case Etats::EB:
             break;
