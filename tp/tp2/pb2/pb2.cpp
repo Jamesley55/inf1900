@@ -50,11 +50,11 @@ void couleurAmbre()
     uint8_t counteur = 0;
     while (counteur < 100)
     {
-        PORTB = vert;
+        PORTA = vert;
 
         _delay_ms(10);
 
-        PORTB = rouge;
+        PORTA = rouge;
 
         _delay_ms(2);
         counteur++;
