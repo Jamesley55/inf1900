@@ -33,18 +33,23 @@ void Couleur()
 
 void InterupteurAmbre()
 {
-    DDRB = 0xff; // PORT B est en mode sortie
-    DDRB = 0x0;  // PORT A est en mode entree
+    DDRB |= (1 << DDA0) | (1 << DDA1); // PORT B est en mode sortie
+    DDRB = 0x0;  // PORT A est en mode entreeS
+    const uint8_t D2 = 0x04;
+    const uint8_t debounce = 10;
     for (;;)
     {
-        if (PIND & 0x04)
+        if (PIND & D2)
         {
-            _delay_ms(10);
-            while (PIND & 0x04)
+            _delay_ms(debounce);
+            if (PIND & D2)
             {
+                while (PIND & 0x04)
+                {
 
-                PORTB = 0x01;
-                _delay_ms(2);
+                    PORTB = 0x01;
+                    _delay_ms(2);
+                }
             }
         }
     }
