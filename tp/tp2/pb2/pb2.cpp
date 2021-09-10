@@ -42,12 +42,28 @@ int main()
             break;
         case Etats::EB:
             PORTA = vert;
+            if(estPresser()){
+                etat = Etats::EC;
+            }
             break;
         case Etats::EC:
+
+            PORTA = rouge;
+            if(!estPresser()){
+                etat = Etats::ED;
+            }
             break;
         case Etats::ED:
+            PORTA = eteint; 
+            if(estPresser()){
+                etat = Etats::EE; 
+            }
             break;
         case Etats::EE:
+            PORTA = vert; 
+            if(!estPresser()){
+                etat= Etats::INIT;
+            }
             break;
         }
     }
