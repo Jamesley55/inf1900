@@ -26,92 +26,22 @@ int main()
     Etats etat = Etats::INIT;
     for (;;)
     {
-        if (PIND & D2)
+        switch (etat)
         {
-            _delay_ms(debounce);
-            switch (etat)
-            {
-            case Etats::INIT:
-                
-                if (PIND & D2)
-                {   
-                    etat = Etats::EA;
-                }
-                break;
-            case Etats::EA:
-                etat = Etats::EB;
-                break;
-
-            case Etats::EB:
-                PORTA = vert;
-                if (PIND & D2)
-                {
-                    if (PIND & D2)
-                        etat = Etats::EC;
-                }
-                break;
-
-            case Etats::EC:
-                PORTA = rouge;
-                if (!(PIND & D2))
-                {
-
-                    if (!(PIND & D2))
-                        etat = Etats::ED;
-                }
-                break;
-            case Etats::ED:
-                PORTA = vert;
-            }
+        case Etats::INIT:
+            couleurAmbre();
+            break;
+        case Etats::EA:
+            break;
+        case Etats::EB:
+            break;
+        case Etats::EC:
+            break;
+        case Etats::ED:
+            break;
+        case Etats::EE:
+            break;
         }
-        else{
-            switch (etat)
-            {
-            case Etats::INIT:
-
-                PORTA = rouge;
-            
-                break;
-            case Etats::EA:
-                couleurAmbre();
-                break;
-            case Etats::EB:
-                PORTA = vert;
-                if (PIND & D2)
-                {
-                    if (PIND & D2)
-                        etat = Etats::EC;
-                }
-                break;
-
-            case Etats::EC:
-                PORTA = rouge;
-                if (!(PIND & D2))
-                {
-
-                    if (!(PIND & D2))
-                        etat = Etats::ED;
-                }
-                break;
-            case Etats::ED:
-                PORTA = eteint;
-                if (PIND & D2)
-                {
-
-                    if (PIND & D2)
-                        etat = Etats::EE;
-                }
-                break;
-            case Etats::EE:
-                PORTA = vert;
-                if ((!PIND & D2))
-                {
-                    if (PIND & D2)
-                        Etats::INIT;
-                }
-            }
-        }
-        
     }
     return 0;
 }
